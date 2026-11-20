@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manchester United FC | สโมสรฟุตบอลแมนเชสเตอร์ ยูไนเต็ด</title>
+  
+  <!-- นำเข้าฟอนต์ภาษาไทย (Prompt) และภาษาอังกฤษสไตล์สปอร์ต (Oswald) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. ตัวแปรสีและค่าพื้นฐาน (ปรับแต่งโทนสีหลักของเว็บไซต์ได้ที่นี่)
+       ========================================================================== */
+    :root {
+      --mu-red: #DA291C;          /* สีแดงประจำสโมสรแมนยู */
+      --mu-dark-red: #9E1B12;     /* สีแดงเข้มสำหรับ Hover */
+      --mu-black: #111111;        /* สีดำพื้นหลังหลัก */
+      --mu-dark-gray: #1C1C1C;    /* สีเทาเข้มสำหรับการ์ด */
+      --mu-gold: #FBE122;         /* สีทองตัดขอบและไฮไลต์ */
+      --text-light: #F5F5F5;      /* สีตัวอักษรหลัก */
+      --text-muted: #B0B0B0;      /* สีตัวอักษรรอง */
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Prompt', sans-serif;
+      background-color: var(--mu-black);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .brand-font {
+      font-family: 'Oswald', 'Prompt', sans-serif;
+      letter-spacing: 0.5px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ==========================================================================
+       2. แถบเมนูนำทาง (Navigation Bar)
+       ========================================================================== */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(17, 17, 17, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--mu-red);
+      z-index: 1000;
+      padding: 0 5%;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 75px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-light);
+    }
+
+    .logo-badge {
+      width: 40px;
+      height: 40px;
+      background: var(--mu-red);
+      border: 2px solid var(--mu-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--mu-gold);
+      font-size: 1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      font-size: 1rem;
+      position: relative;
+      padding: 5px 0;
+      transition: var(--transition);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--mu-gold);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--mu-gold);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--text-light);
+      background: none;
+      border: none;
+    }
+
+    /* ==========================================================================
+       3. ส่วนแบนเนอร์หลัก (Hero Section)
+       ========================================================================== */
+    .hero {
+      min-height: 100vh;
+      padding: 120px 5% 60px;
+      background: linear-gradient(135deg, rgba(218, 41, 28, 0.85) 0%, rgba(17, 17, 17, 0.95) 70%),
+                  radial-gradient(circle at top right, #3a0805, #111111);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .hero-subtitle {
+      display: inline-block;
+      background: var(--mu-gold);
+      color: var(--mu-black);
+      padding: 5px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.1;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: #E0E0E0;
+      margin-bottom: 35px;
+      font-weight: 300;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background-color: var(--mu-red);
+      color: white;
+      border: 2px solid var(--mu-red);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--mu-dark-red);
+      border-color: var(--mu-gold);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--mu-gold);
+      border: 2px solid var(--mu-gold);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--mu-gold);
+      color: var(--mu-black);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       4. โครงสร้าง Section ทั่วไป
+       ========================================================================== */
+    section {
+      padding: 90px 5%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      color: var(--text-light);
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 4px;
+      background: var(--mu-red);
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      margin-top: 12px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ==========================================================================
+       5. ประวัติความเป็นมาของสโมสร (Timeline History)
+       ========================================================================== */
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--mu-red);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 60px;
+      margin-bottom: 40px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 11px;
+      top: 5px;
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      background: var(--mu-gold);
+      border: 4px solid var(--mu-red);
+    }
+
+    .timeline-card {
+      background: var(--mu-dark-gray);
+      padding: 25px 30px;
+      border-radius: 10px;
+      border-left: 4px solid var(--mu-red);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: var(--transition);
+    }
+
+    .timeline-card:hover {
+      transform: translateX(5px);
+      border-left-color: var(--mu-gold);
+    }
+
+    .timeline-year {
+      color: var(--mu-gold);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .timeline-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .timeline-card p {
+      color: var(--text-muted);
+      margin-bottom: 15px;
+    }
+
+    .read-more-link {
+      color: var(--mu-gold);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: inherit;
+    }
+
+    .read-more-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       6. รายชื่อผู้เล่น (Squad Section)
+       ========================================================================== */
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      background: var(--mu-dark-gray);
+      color: var(--text-light);
+      border: 1px solid #333;
+      border-radius: 25px;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--mu-red);
+      border-color: var(--mu-red);
+      color: white;
+    }
+
+    .players-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .player-card {
+      background: var(--mu-dark-gray);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #2A2A2A;
+      transition: var(--transition);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .player-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--mu-red);
+      box-shadow: 0 10px 25px rgba(218, 41, 28, 0.25);
+    }
+
+    .player-header {
+      background: linear-gradient(135deg, var(--mu-red), #5c0d08);
+      padding: 25px 20px;
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .player-number {
+      font-family: 'Oswald', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.25);
+      line-height: 1;
+    }
+
+    .player-pos-badge {
+      background: var(--mu-black);
+      color: var(--mu-gold);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .player-body {
+      padding: 20px;
+    }
+
+    .player-body h3 {
+      font-size: 1.35rem;
+      margin-bottom: 5px;
+    }
+
+    .player-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 15px;
+    }
+
+    /* ==========================================================================
+       7. ส่วนติดต่อผู้พัฒนาเว็บไซต์ (Developer Contact Section)
+       ========================================================================== */
+    .developer-section {
+      background: var(--mu-dark-gray);
+      border-radius: 16px;
+      padding: 50px;
+      border: 1px solid #333;
+      border-top: 5px solid var(--mu-gold);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .dev-info h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: var(--mu-gold);
+    }
+
+    .dev-info p {
+      color: var(--text-muted);
+      margin-bottom: 25px;
+    }
+
+    .dev-card {
+      background: var(--mu-black);
+      padding: 25px;
+      border-radius: 10px;
+      border-left: 4px solid var(--mu-red);
+    }
+
+    .dev-detail-item {
+      margin-bottom: 15px;
+      font-size: 1.05rem;
+    }
+
+    .dev-detail-item strong {
+      color: var(--mu-gold);
+      display: inline-block;
+      width: 110px;
+    }
+
+    .line-copy-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #1E1E1E;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid #333;
+    }
+
+    .copy-btn {
+      background: #06C755; /* สีเขียว LINE */
+      color: white;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-family: inherit;
+      font-weight: 600;
+    }
+
+    .copy-btn:hover {
+      opacity: 0.9;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 12px 15px;
+      background: var(--mu-black);
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: var(--text-light);
+      font-family: inherit;
+    }
+
+    .contact-form input:focus, .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--mu-gold);
+    }
+
+    /* ==========================================================================
+       8. หน้าต่างป๊อปอัปอ่านเพิ่มเติม (Modal)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--mu-dark-gray);
+      max-width: 650px;
+      width: 100%;
+      border-radius: 12px;
+      border-top: 5px solid var(--mu-red);
+      padding: 35px;
+      position: relative;
+      max-height: 85vh;
+      overflow-y: auto;
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      color: var(--mu-red);
+    }
+
+    .modal-tag {
+      color: var(--mu-gold);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .modal-box h3 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+
+    .modal-body {
+      color: #DCDCDC;
+      line-height: 1.8;
+    }
+
+    /* ==========================================================================
+       9. ส่วนท้ายเว็บไซต์ (Footer)
+       ========================================================================== */
+    footer {
+      background: #0A0A0A;
+      border-top: 2px solid var(--mu-red);
+      text-align: center;
+      padding: 30px 5%;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer span {
+      color: var(--mu-gold);
+    }
+
+    /* ==========================================================================
+       10. รองรับหน้าจอมือถือและแท็บเล็ต (Responsive Design)
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 75px;
+        left: 0;
+        width: 100%;
+        background: var(--mu-black);
+        flex-direction: column;
+        padding: 20px 5%;
+        gap: 15px;
+        border-bottom: 2px solid var(--mu-red);
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .developer-section {
+        grid-template-columns: 1fr;
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= แถบเมนูนำทาง ================= -->
+  <header>
+    <nav class="navbar">
+      <a href="#home" class="logo">
+        <div class="logo-badge">MU</div>
+        <span>MANCHESTER UNITED</span>
+      </a>
+      
+      <button class="menu-toggle" id="menuToggle" aria-label="เปิดเมนู">☰</button>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">หน้าแรก</a></li>
+        <li><a href="#history">ประวัติสโมสร</a></li>
+        <li><a href="#squad">รายชื่อผู้เล่น</a></li>
+        <li><a href="#developer">ติดต่อผู้พัฒนา</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ================= ส่วนแบนเนอร์หลัก (Hero) ================= -->
+  <div class="hero" id="home">
+    <div class="hero-content">
+      <span class="hero-subtitle">The Red Devils • Est. 1878</span>
+      <h1>Glory Glory<br>Manchester United</h1>
+      <p>ยินดีต้อนรับสู่เว็บไซต์รวบรวมประวัติศาสตร์อันยิ่งใหญ่ ตั้งแต่จุดเริ่มต้นแห่งเมืองแมนเชสเตอร์ รายชื่อขุนพลปีศาจแดงชุดปัจจุบัน และเรื่องราวแห่งความภาคภูมิใจที่โรงละครแห่งความฝัน (Old Trafford)</p>
+      <div class="hero-buttons">
+        <a href="#history" class="btn btn-primary">อ่านประวัติสโมสร</a>
+        <a href="#squad" class="btn btn-outline">ดูรายชื่อนักเตะ</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ส่วนประวัติสโมสร (History) ================= -->
+  <section id="history">
+    <div class="section-header">
+      <h2>ประวัติศาสตร์สโมสร (1878 - ปัจจุบัน)</h2>
+      <p>เส้นทางแห่งเกียรติยศของปีศาจแดง จากทีมพนักงานการรถไฟสู่สโมสรระดับตำนานของโลก</p>
+    </div>
+
+    <div class="timeline">
+      <!-- ช่วงที่ 1 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-year">ค.ศ. 1878 - 1902</span>
+          <h3>จุดเริ่มต้นในนาม "นิวตัน ฮีธ" (Newton Heath LYR F.C.)</h3>
+          <p>ก่อตั้งขึ้นโดยแผนกตู้โดยสารและเกวียนของบริษัทรถไฟ Lancashire and Yorkshire Railway ก่อนจะประสบปัญหาทางการเงินและเปลี่ยนชื่อเป็น แมนเชสเตอร์ ยูไนเต็ด ในปี 1902</p>
+          <button class="read-more-link" onclick="openModal('history1')">อ่านเพิ่มเติม →</button>
+        </div>
+      </div>
+
+      <!-- ช่วงที่ 2 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-year">ค.ศ. 1945 - 1969</span>
+          <h3>ยุคของ เซอร์ แมตต์ บัสบี และโศกนาฏกรรมมิวนิก</h3>
+          <p>การสร้างทีมสายเลือดใหม่ "Busby Babes" การก้าวผ่านโศกนาฏกรรมทางอากาศที่มิวนิกในปี 1958 สู่การคว้าแชมป์ยูโรเปียน คัพ สมัยแรกของทีมจากอังกฤษในปี 1968</p>
+          <button class="read-more-link" onclick="openModal('history2')">อ่านเพิ่มเติม →</button>
+        </div>
+      </div>
+
+      <!-- ช่วงที่ 3 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-year">ค.ศ. 1986 - 2013</span>
+          <h3>ยุคทองของ เซอร์ อเล็กซ์ เฟอร์กูสัน และทริปเปิลแชมป์ 1999</h3>
+          <p>26 ปีแห่งความยิ่งใหญ่ คว้าแชมป์พรีเมียร์ลีก 13 สมัย และสร้างประวัติศาสตร์คว้า 3 แชมป์ใหญ่ (Treble) ในฤดูกาล 1998-1999 อย่างยิ่งใหญ่</p>
+          <button class="read-more-link" onclick="openModal('history3')">อ่านเพิ่มเติม →</button>
+        </div>
+      </div>
+
+      <!-- ช่วงที่ 4 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <span class="timeline-year">ค.ศ. 2013 - ปัจจุบัน</span>
+          <h3>ยุคเปลี่ยนผ่านและการก้าวสู่ยุคใหม่ภายใต้กลุ่ม INEOS</h3>
+          <p>ช่วงเวลาแห่งการปรับโครงสร้างสโมสร การคว้าแชมป์บอลถ้วยสำคัญทั้ง FA Cup, League Cup, Europa League และการวางรากฐานใหม่เพื่อทวงคืนความยิ่งใหญ่ในปัจจุบัน</p>
+          <button class="read-more-link" onclick="openModal('history4')">อ่านเพิ่มเติม →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ส่วนรายชื่อผู้เล่น (Squad) ================= -->
+  <section id="squad">
+    <div class="section-header">
+      <h2>รายชื่อผู้เล่นชุดปัจจุบัน</h2>
+      <p>เลือกกรองตามตำแหน่ง หรือคลิก "อ่านเพิ่มเติม" เพื่อดูข้อมูลประวัติและจุดเด่นของนักเตะแต่ละคน</p>
+    </div>
+
+    <!-- ปุ่มกรองตำแหน่ง -->
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
+      <button class="filter-btn" data-filter="GK">ผู้รักษาประตู (GK)</button>
+      <button class="filter-btn" data-filter="DEF">กองหลัง (DEF)</button>
+      <button class="filter-btn" data-filter="MID">กองกลาง (MID)</button>
+      <button class="filter-btn" data-filter="FWD">กองหน้า (FWD)</button>
+    </div>
+
+    <!-- กริดแสดงการ์ดนักเตะ (สามารถคัดลอก article ด้านล่างเพื่อเพิ่มนักเตะได้ทันที) -->
+    <div class="players-grid" id="playersGrid">
+      
+      <!-- นักเตะ 1 -->
+      <article class="player-card" data-position="GK">
+        <div>
+          <div class="player-header">
+            <span class="player-pos-badge">ผู้รักษาประตู</span>
+            <span class="player-number">24</span>
+          </div>
+          <div class="player-body">
+            <h3>André Onana</h3>
+            <p class="player-meta">สัญชาติ: แคเมอรูน • หมายเลข 24</p>
+          </div>
+        </div>
+        <div class="player-body" style="padding-top: 0;">
+          <button class="read-more-link" onclick="openModal('player_onana')">อ่านเพิ่มเติม →</button>
+        </div>
+      </article>
+
+      <!-- นักเตะ 2 -->
+      <article class="player-card" data-position="DEF">
+        <div>
+          <div class="player-header">
+            <span class="player-pos-badge">กองหลัง</span>
+            <span class="player-number">6</span>
+          </div>
+          <div class="player-body">
+            <h3>Lisandro Martínez</h3>
+            <p class="player-meta">สัญชาติ: อาร์เจนตินา • หมายเลข 6</p>
+          </div>
+        </div>
+        <div class="player-body" style="padding-top: 0;">
+          <button class="read-more-link" onclick="openModal('player_martinez')">อ่านเพิ่มเติม →</button>
+        </div>
+      </article>
+
+      <!-- นักเตะ 3 -->
+      <article class="player-card" data-position="DEF">
+        <div>
+          <div class="player-header">
+            <span class="player-pos-badge">กองหลัง</span>
+            <span class="player-number">4</span>
+          </div>
+          <div class="player-body">
+            <h3>Matthijs de Ligt</h3>
+            <p class="player-meta">สัญชาติ: เนเธอร์แลนด์ • หมายเลข 4</p>
+          </div>
+        </div>
+        <div class="player-body" style="padding-top: 0;">
+          <button class="read-more-link" onclick="openModal('player_deligt')">อ่านเพิ่มเติม →</button>
+        </div>
+      </article>
+
+      <!-- นักเตะ 4 -->
+      <article class="player-card" data-position="MID">
+        <div>
+          <div class="player-header">
+            <span class="player-pos-badge">กองกลาง (กัปตันทีม)</span>
+            <span class="player-number">8</span>
+          </div>
+          <div class="player-body">
+            <h3>Bruno Fernandes</h3>
+            <p class="player-meta">สัญชาติ: โปรตุเกส • หมายเลข 8</p>
+          </div>
+        </div>
+        <div class="player-body" style="padding-top: 0;">
+          <button class="read-more-link" onclick="openModal('player_bruno')">อ่านเพิ่มเติม →</button>
+        </div>
+      </article>
+
+      <!-- นักเตะ 5 -->
+      <article class="player-card" data-position="MID">
+        <div>
+          <div class="player-header">
+            <span class="player-pos-badge">กองกลาง</span>
+            <span class="player-number">37</span>
+          </div>
+          <div class="player-body">
+            <h3>Kobbie Mainoo</h3>
+            <p class="player-meta">สัญชาติ: อังกฤษ • หมายเลข 37</p>
+          </div>
+        </div>
+        <div class="player-body" style="padding-top: 0;">
+          <button class="read-more-link" onclick="openModal('player_mainoo')">อ่านเพิ่มเติม →</button>
+        </div>
+      </article>
+
+      <!-- นักเตะ 6 -->
+      <article class="player-card" data-position="FWD">
+        <div>
+          <div class="player-header">
+            <span class="player-pos-badge">กองหน้า</span>
+            <span class="player-number">17</span>
+          </div>
+          <div class="player-body">
+            <h3>Alejandro Garnacho</h3>
+            <p class="player-meta">สัญชาติ: อาร์เจนตินา • หมายเลข 17</p>
+          </div>
+        </div>
+        <div class="player-body" style="padding-top: 0;">
+          <button class="read-more-link" onclick="openModal('player_garnacho')">อ่านเพิ่มเติม →</button>
+        </div>
+      </article>
+
+      <!-- นักเตะ 7 -->
+      <article class="player-card" data-position="FWD">
+        <div>
+          <div class="player-header">
+            <span class="player-pos-badge">กองหน้า</span>
+            <span class="player-number">9</span>
+          </div>
+          <div class="player-body">
+            <h3>Rasmus Højlund</h3>
+            <p class="player-meta">สัญชาติ: เดนมาร์ก • หมายเลข 9</p>
+          </div>
+        </div>
+        <div class="player-body" style="padding-top: 0;">
+          <button class="read-more-link" onclick="openModal('player_hojlund')">อ่านเพิ่มเติม →</button>
+        </div>
+      </article>
+
+      <!-- นักเตะ 8 -->
+      <article class="player-card" data-position="FWD">
+        <div>
+          <div class="player-header">
+            <span class="player-pos-badge">กองหน้า</span>
+            <span class="player-number">16</span>
+          </div>
+          <div class="player-body">
+            <h3>Amad Diallo</h3>
+            <p class="player-meta">สัญชาติ: ไอวอรีโคสต์ • หมายเลข 16</p>
+          </div>
+        </div>
+        <div class="player-body" style="padding-top: 0;">
+          <button class="read-more-link" onclick="openModal('player_amad')">อ่านเพิ่มเติม →</button>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ================= ส่วนติดต่อผู้พัฒนาเว็บไซต์ ================= -->
+  <section id="developer">
+    <div class="developer-section">
+      <div class="dev-info">
+        <h2>ติดต่อผู้พัฒนาเว็บไซต์</h2>
+        <p>สนใจออกแบบและพัฒนาเว็บไซต์ตามหลัก UX/UI ปรับปรุงระบบ หรือสอบถามข้อมูลเพิ่มเติม สามารถติดต่อผู้พัฒนาได้โดยตรงตามช่องทางด้านล่างนี้</p>
+        
+        <div class="dev-card">
+          <div class="dev-detail-item">
+            <strong>ผู้พัฒนา:</strong> คุณ ณัฐฐินันท์ ศรีโรจนกุล
+          </div>
+          <div class="dev-detail-item">
+            <strong>ตำแหน่ง:</strong> Web Developer & UX/UI Designer
+          </div>
+          <div class="dev-detail-item">
+            <strong>Line ID:</strong> 
+            <div class="line-copy-box">
+              <span id="lineIdText">0842148590</span>
+              <button class="copy-btn" onclick="copyLineId()">คัดลอก ID</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ฟอร์มส่งข้อความด่วน -->
+      <form class="contact-form" onsubmit="handleContactSubmit(event)">
+        <h3 style="margin-bottom: 5px;">ส่งข้อความถึงผู้พัฒนา</h3>
+        <input type="text" placeholder="ชื่อของคุณ" required>
+        <input type="text" placeholder="เบอร์โทรศัพท์ หรือ Line ID ติดต่อกลับ" required>
+        <textarea rows="4" placeholder="รายละเอียดที่ต้องการติดต่อ..." required></textarea>
+        <button type="submit" class="btn btn-primary" style="justify-content: center;">ส่งข้อความติดต่อ</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= หน้าต่างป๊อปอัป (Modal) สำหรับอ่านเพิ่มเติม ================= -->
+  <div class="modal-overlay" id="detailModal" onclick="closeModalOnOutside(event)">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <span class="modal-tag" id="modalTag">หมวดหมู่</span>
+      <h3 id="modalTitle">หัวข้อรายละเอียด</h3>
+      <div class="modal-body" id="modalBody">
+        เนื้อหารายละเอียดจะแสดงที่นี่...
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ส่วนท้ายเว็บไซต์ (Footer) ================= -->
+  <footer>
+    <p>&copy; 2026 Manchester United Fan & Info Portal. ออกแบบและพัฒนาเว็บไซต์โดย <span>คุณ ณัฐฐินันท์ ศรีโรจนกุล (Line ID: 0842148590)</span></p>
+  </footer>
+
+  <!-- ================= สคริปต์ควบคุมการทำงาน (JavaScript) ================= -->
+  <script>
+    /* 1. ฐานข้อมูลเนื้อหา "อ่านเพิ่มเติม" (แก้ไขหรือเพิ่มข้อมูลประวัติและนักเตะได้ที่นี่) */
+    const contentDatabase = {
+      // ข้อมูลประวัติสโมสร
+      history1: {
+        tag: "ประวัติศาสตร์สโมสร • ค.ศ. 1878 - 1902",
+        title: "จุดเริ่มต้นในนาม นิวตัน ฮีธ (Newton Heath LYR F.C.)",
+        body: "สโมสรก่อตั้งขึ้นในปี ค.ศ. 1878 โดยกลุ่มพนักงานแผนกตู้โดยสารและเกวียนของบริษัทรถไฟ Lancashire and Yorkshire Railway ณ ย่านนิวตัน ฮีธ เมืองแมนเชสเตอร์ แรกเริ่มใช้ชุดแข่งขันสีเขียวและสีทอง<br><br>ในปี ค.ศ. 1902 สโมสรเผชิญวิกฤตล้มละลายและเกือบถูกยุบทีม แต่ได้รับความช่วยเหลือจากนักธุรกิจท้องถิ่นชื่อ จอห์น เฮนรี เดวีส์ (John Henry Davies) ที่เข้ามาลงทุนและเปลี่ยนชื่อสโมสรใหม่เป็น <strong>'แมนเชสเตอร์ ยูไนเต็ด'</strong> พร้อมเปลี่ยนสีเสื้อประจำทีมเป็นสีแดงและสีขาวตั้งแต่นั้นเป็นต้นมา"
+      },
+      history2: {
+        tag: "ประวัติศาสตร์สโมสร • ค.ศ. 1945 - 1969",
+        title: "ยุคของ เซอร์ แมตต์ บัสบี และโศกนาฏกรรมมิวนิก",
+        body: "หลังสงครามโลกครั้งที่ 2 เซอร์ แมตต์ บัสบี เข้ามาคุมทีมและสร้างนักเตะดาวรุ่งฝีเท้าจัดจ้านจนได้รับฉายาว่า 'Busby Babes' พาทีมคว้าแชมป์ลีกได้สำเร็จ<br><br>แต่ในวันที่ 6 กุมภาพันธ์ 1958 เกิดโศกนาฏกรรมเครื่องบินตกที่เมืองมิวนิก ประเทศเยอรมนี คร่าชีวิตนักเตะและทีมงานไปถึง 23 ราย เซอร์ แมตต์ บัสบี ที่รอดชีวิตได้สร้างทีมขึ้นมาใหม่โดยมีแกนหลักอย่าง บ็อบบี ชาร์ลตัน, เดนิส ลอว์ และ จอร์จ เบสต์ จนสามารถคว้าแชมป์ยูโรเปียน คัพ (ยูฟ่า แชมเปียนส์ลีก ในปัจจุบัน) ได้สำเร็จในปี 1968"
+      },
+      history3: {
+        tag: "ประวัติศาสตร์สโมสร • ค.ศ. 1986 - 2013",
+        title: "ยุคทองของ เซอร์ อเล็กซ์ เฟอร์กูสัน",
+        body: "เซอร์ อเล็กซ์ เฟอร์กูสัน เข้ามารับตำแหน่งผู้จัดการทีมในเดือนพฤศจิกายน 1986 และพลิกโฉมสโมสรให้กลายเป็นมหาอำนาจลูกหนังของอังกฤษและยุโรป<br><br>ตลอดระยะเวลา 26 ปี เขาพาสโมสรคว้าแชมป์รวม 38 รายการ รวมถึงแชมป์พรีเมียร์ลีก 13 สมัย, ยูฟ่า แชมเปียนส์ลีก 2 สมัย และจุดสูงสุดคือการคว้า <strong>ทริปเปิลแชมป์ (พรีเมียร์ลีก, เอฟเอ คัพ, ยูฟ่า แชมเปียนส์ลีก)</strong> ในฤดูกาล 1998-1999 ซึ่งเป็นสโมสรแรกในอังกฤษที่ทำได้"
+      },
+      history4: {
+        tag: "ประวัติศาสตร์สโมสร • ค.ศ. 2013 - ปัจจุบัน",
+        title: "ยุคเปลี่ยนผ่านและการก้าวสู่ยุคใหม่",
+        body: "หลังจากการวางมือของ เซอร์ อเล็กซ์ เฟอร์กูสัน ในปี 2013 สโมสรผ่านการเปลี่ยนแปลงผู้จัดการทีมหลายยุคสมัย แต่ยังคงคว้าแชมป์สำคัญเพิ่มเติมได้ทั้ง FA Cup, League Cup และ UEFA Europa League<br><br>ในยุคปัจจุบัน สโมสรได้เข้าสู่โครงสร้างการบริหารด้านฟุตบอลยุคใหม่ภายใต้การร่วมทุนของกลุ่ม INEOS ที่มุ่งเน้นการพัฒนาโครงสร้างพื้นฐาน สนามโอลด์ แทรฟฟอร์ด และสร้างทีมคนรุ่นใหม่เพื่อกลับมาทวงความยิ่งใหญ่อีกครั้ง"
+      },
+
+      // ข้อมูลนักเตะรายบุคคล
+      player_onana: {
+        tag: "ข้อมูลผู้เล่น • ผู้รักษาประตู",
+        title: "#24 André Onana (อ็องเดร โอนานา)",
+        body: "<strong>วันเกิด:</strong> 2 เมษายน 1996 | <strong>สัญชาติ:</strong> แคเมอรูน<br><br>ผู้รักษาประตูสมัยใหม่ที่มีจุดเด่นด้านการใช้เท้าออกบอลจากแดนหลังได้อย่างแม่นยำ และมีปฏิกิริยาการเซฟที่รวดเร็ว ย้ายมาจากอินเตอร์ มิลาน ในปี 2023"
+      },
+      player_martinez: {
+        tag: "ข้อมูลผู้เล่น • กองหลัง",
+        title: "#6 Lisandro Martínez (ลิซานโดร มาร์ติเนซ)",
+        body: "<strong>วันเกิด:</strong> 18 มกราคม 1998 | <strong>สัญชาติ:</strong> อาร์เจนตินา<br><br>กองหลังเจ้าของฉายา 'The Butcher' (จอมเชือด) โดดเด่นเรื่องความดุดัน การอ่านเกมที่เฉียบขาด และการจ่ายบอลทะลุช่องจากแนวรับ ดีกรีแชมป์ฟุตบอลโลก 2022 กับทีมชาติอาร์เจนตินา"
+      },
+      player_deligt: {
+        tag: "ข้อมูลผู้เล่น • กองหลัง",
+        title: "#4 Matthijs de Ligt (มัตไตส์ เดอ ลิกต์)",
+        body: "<strong>วันเกิด:</strong> 12 สิงหาคม 1999 | <strong>สัญชาติ:</strong> เนเธอร์แลนด์<br><br>ปราการหลังตัวกลางที่มีความแข็งแกร่งทางร่างกาย ลูกกลางอากาศที่ยอดเยี่ยม และความเป็นผู้นำสูง ผ่านประสบการณ์ระดับท็อปกับอาแจ็กซ์, ยูเวนตุส และบาเยิร์น มิวนิก"
+      },
+      player_bruno: {
+        tag: "ข้อมูลผู้เล่น • กองกลาง (กัปตันทีม)",
+        title: "#8 Bruno Fernandes (บรูโน แฟร์นันด์ส)",
+        body: "<strong>วันเกิด:</strong> 8 กันยายน 1994 | <strong>สัญชาติ:</strong> โปรตุเกส<br><br>กัปตันทีมและหัวใจสำคัญในเกมรุกของปีศาจแดง โดดเด่นด้านการสร้างสรรค์โอกาส การจ่ายบอลคิลเลอร์พาส ความขยันวิ่งไม่มีหมด และการยิงประตูจากแถวสอง"
+      },
+      player_mainoo: {
+        tag: "ข้อมูลผู้เล่น • กองกลาง",
+        title: "#37 Kobbie Mainoo (ค็อบบี เมนู)",
+        body: "<strong>วันเกิด:</strong> 19 เมษายน 2005 | <strong>สัญชาติ:</strong> อังกฤษ<br><br>ผลผลิตจากอะคาเดมีของแมนเชสเตอร์ ยูไนเต็ด ที่ก้าวขึ้นมาเป็นกำลังหลักของทีมชุดใหญ่และทีมชาติอังกฤษ มีจุดเด่นที่ความนิ่งเกินวัย การครองบอลเหนียวแน่น และการเอาตัวรอดในพื้นที่แคบ"
+      },
+      player_garnacho: {
+        tag: "ข้อมูลผู้เล่น • กองหน้า",
+        title: "#17 Alejandro Garnacho (อเลฮานโดร การ์นาโช)",
+        body: "<strong>วันเกิด:</strong> 1 กรกฎาคม 2004 | <strong>สัญชาติ:</strong> อาร์เจนตินา<br><br>ปีกดาวรุ่งความเร็วสูงที่มีความกล้าได้กล้าเสียในการเลี้ยงกินตัวและทำประตู เจ้าของรางวัลลูกยิงยอดเยี่ยม FIFA Puskás Award จากลูกจักรยานอากาศสุดสวย"
+      },
+      player_hojlund: {
+        tag: "ข้อมูลผู้เล่น • กองหน้า",
+        title: "#9 Rasmus Højlund (ราสมุส ฮอยลุนด์)",
+        body: "<strong>วันเกิด:</strong> 4 กุมภาพันธ์ 2003 | <strong>สัญชาติ:</strong> เดนมาร์ก<br><br>ศูนย์หน้าหมายเลข 9 ที่มีความเร็วในการสปรินต์ พละกำลังในการปะทะกับกองหลัง และการจบสกอร์ที่เฉียบคมในกรอบเขตโทษ"
+      },
+      player_amad: {
+        tag: "ข้อมูลผู้เล่น • กองหน้า",
+        title: "#16 Amad Diallo (อาหมัด ดิยัลโล)",
+        body: "<strong>วันเกิด:</strong> 11 กรกฎาคม 2002 | <strong>สัญชาติ:</strong> ไอวอรีโคสต์<br><br>ตัวรุกริมเส้นฝั่งขวาที่มีทักษะการเลี้ยงบอลคล่องแคล่ว เทคนิคเฉพาะตัวสูง และมักสร้างความแตกต่างในจังหวะสำคัญให้ทีมได้เสมอ"
+      }
+    };
+
+    /* 2. ฟังก์ชันเปิด-ปิด Modal อ่านเพิ่มเติม */
+    const modal = document.getElementById('detailModal');
+    function openModal(key) {
+      const data = contentDatabase[key];
+      if (!data) return;
+      document.getElementById('modalTag').innerText = data.tag;
+      document.getElementById('modalTitle').innerText = data.title;
+      document.getElementById('modalBody').innerHTML = data.body;
+      modal.classList.add('active');
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+    }
+
+    function closeModalOnOutside(e) {
+      if (e.target === modal) closeModal();
+    }
+
+    /* 3. ระบบกรองตำแหน่งนักเตะ */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const playerCards = document.querySelectorAll('.player-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+        playerCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-position') === filterValue) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    /* 4. เมนูมือถือ (Hamburger Menu) */
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    /* 5. คัดลอก Line ID และส่งฟอร์มติดต่อ */
+    function copyLineId() {
+      const lineId = document.getElementById('lineIdText').innerText;
+      navigator.clipboard.writeText(lineId).then(() => {
+        alert('คัดลอก Line ID: ' + lineId + ' เรียบร้อยแล้ว!');
+      });
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      alert('ส่งข้อความเรียบร้อยแล้ว! คุณ ณัฐฐินันท์ ศรีโรจนกุล จะติดต่อกลับโดยเร็วที่สุด หรือแอด Line ID: 0842148590');
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
